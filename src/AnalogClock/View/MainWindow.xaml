@@ -1,0 +1,240 @@
+﻿<Window x:Class="AnalogClock.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnalogClock"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:Interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:Core="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+        xmlns:vm="clr-namespace:AnalogClock.ViewModel"
+        mc:Ignorable="d"
+        Width="{Binding Path=WindowLength}"
+        Height="{Binding Path=WindowLength}"
+        Title="MainWindow"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Cursor="SizeAll"
+        Background="#00000000">
+    
+    <!-- DataContext -->
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    
+    <!-- リソース定義 -->
+    <Window.Resources>
+        <system:Double x:Key="ClockSize">200</system:Double>
+        <Style x:Key="NumberTextBlock" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        </Style>
+        <Style x:Key="ClockFrameBorder" TargetType="Border">
+            <Setter Property="Width" Value="{StaticResource ClockSize}"/>
+            <Setter Property="Height" Value="{StaticResource ClockSize}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="CornerRadius" Value="100"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Gray" Offset="0"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="LightGray" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <!-- コンテキストメニュー -->
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Close" Command="{Binding Path=ClosingCommand}"/>
+        </ContextMenu>
+    </Window.ContextMenu>
+    
+    <!-- -->
+    <!--<Interactivity:Interaction.Triggers>
+        <Interactivity:EventTrigger EventName="MouseWheel">
+            <Core:CallMethodAction TargetObject="{Binding .}" MethodName="MouseScrollEvent"/>
+        </Interactivity:EventTrigger>
+    </Interactivity:Interaction.Triggers>-->
+
+    <!-- Windowのコンテンツ -->
+    <Grid Width="{StaticResource ClockSize}">
+        
+        <!-- 影 -->
+        <Border Style="{StaticResource ClockFrameBorder}"
+                BorderThickness="0">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform X="{Binding Path=ShadowSize}" Y="{Binding Path=ShadowSize}"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Border.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#CC000000" Offset="0.9"/>
+                    <GradientStop Color="#00FFFFFF" Offset="1"/>
+                </RadialGradientBrush>
+            </Border.Background>
+        </Border>
+        
+        <!-- 文字盤 -->
+        <Border Style="{StaticResource ClockFrameBorder}">
+            <Grid>
+                <!-- 1～12描画 -->
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number1TextBlock"  Text="1" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[0].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[0].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number2TextBlock"  Text="2" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[1].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[1].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number3TextBlock"  Text="3" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[2].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[2].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number4TextBlock"  Text="4" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[3].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[3].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number5TextBlock"  Text="5" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[4].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[4].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number6TextBlock"  Text="6" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[5].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[5].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number7TextBlock"  Text="7" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[6].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[6].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number8TextBlock"  Text="8" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[7].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[7].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number9TextBlock"  Text="9" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[8].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[8].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number10TextBlock" Text="10">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[9].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[9].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number11TextBlock" Text="11">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[10].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[10].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number12TextBlock" Text="12">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding Path=NumberPositionOffsetArray[11].X}"
+                                                Y="{Binding Path=NumberPositionOffsetArray[11].Y}"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+                <!-- 中心 -->
+                <Ellipse Width="5" Height="5" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Black"/>
+
+                <!-- 秒針 -->
+                <Rectangle Width="{Binding Path=SecondHandWidth}"
+                           Height="{Binding Path=SecondHandLength}"
+                           Fill="Black"
+                           RenderTransformOrigin="0.5,0.9">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="00"/>
+                            <TranslateTransform Y="-36.5"/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle Width="{Binding Path=MinuteHandWidth}"
+                           Height="{Binding Path=MinuteHandLength}"
+                           Fill="Black"
+                           RenderTransformOrigin="0.5,0.90">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="58"/>
+                            <TranslateTransform Y="-31.5"/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle Width="{Binding Path=HourHandWidth}"
+                           Height="{Binding Path=HourHandLength}"
+                           Fill="Black"
+                           RenderTransformOrigin="0.5,0.9">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="305"/>
+                            <TranslateTransform Y="-23.8"/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
