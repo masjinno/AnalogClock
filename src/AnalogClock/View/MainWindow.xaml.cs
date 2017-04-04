@@ -27,14 +27,15 @@ namespace AnalogClock.View
 
             Initialize();
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         private void Initialize()
         {
-            this.Width = ConstantData.ORIGINAL_CLOCK_LENGTH * 1.25;
-            this.Height = ConstantData.ORIGINAL_CLOCK_LENGTH * 1.25;
+            this.Width = ConstantData.ORIGINAL_CLOCK_LENGTH + ConstantData.ORIGINAL_SHADOW_SIZE;
+            this.Height = ConstantData.ORIGINAL_CLOCK_LENGTH + ConstantData.ORIGINAL_SHADOW_SIZE;
+
             this.MouseLeftButtonDown += (object sender, MouseButtonEventArgs e) => this.DragMove();
         }
     }

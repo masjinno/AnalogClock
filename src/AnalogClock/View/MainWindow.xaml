@@ -9,8 +9,6 @@
         xmlns:Core="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
         xmlns:vm="clr-namespace:AnalogClock.ViewModel"
         mc:Ignorable="d"
-        Width="{Binding Path=WindowLength}"
-        Height="{Binding Path=WindowLength}"
         Title="MainWindow"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -75,8 +73,13 @@
     </Interactivity:Interaction.Triggers>-->
 
     <!-- Windowのコンテンツ -->
-    <Grid Width="{StaticResource ClockSize}">
-        
+    <Grid x:Name="MainGrid" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform ScaleX="{Binding Path=ControlSizeRate}" ScaleY="{Binding Path=ControlSizeRate}"/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+
         <!-- 影 -->
         <Border Style="{StaticResource ClockFrameBorder}"
                 BorderThickness="0">
@@ -88,7 +91,7 @@
             <Border.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="#CC000000" Offset="0.9"/>
-                    <GradientStop Color="#00FFFFFF" Offset="1"/>
+                    <GradientStop Color="#00000000" Offset="1"/>
                 </RadialGradientBrush>
             </Border.Background>
         </Border>
@@ -198,38 +201,42 @@
                 <Ellipse Width="5" Height="5" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Black"/>
 
                 <!-- 秒針 -->
-                <Rectangle Width="{Binding Path=SecondHandWidth}"
-                           Height="{Binding Path=SecondHandLength}"
+                <Rectangle Width="{Binding Path=SecondHandSize.Width}"
+                           Height="{Binding Path=SecondHandSize.Height}"
                            Fill="Black"
                            RenderTransformOrigin="0.5,0.9">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
-                            <RotateTransform Angle="00"/>
-                            <TranslateTransform Y="-36.5"/>
+                            <RotateTransform Angle="{Binding Path=SecondHandAngle}"/>
+                            <TranslateTransform Y="{Binding Path=SecondHandYOffset}"/>
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>
-                <Rectangle Width="{Binding Path=MinuteHandWidth}"
-                           Height="{Binding Path=MinuteHandLength}"
-                           Fill="Black"
-                           RenderTransformOrigin="0.5,0.90">
-                    <Rectangle.RenderTransform>
-                        <TransformGroup>
-                            <RotateTransform Angle="58"/>
-                            <TranslateTransform Y="-31.5"/>
-                        </TransformGroup>
-                    </Rectangle.RenderTransform>
-                </Rectangle>
-                <Rectangle Width="{Binding Path=HourHandWidth}"
-                           Height="{Binding Path=HourHandLength}"
+                
+                <!-- 分針 -->
+                <Rectangle Width="{Binding Path=MinuteHandSize.Width}"
+                           Height="{Binding Path=MinuteHandSize.Height}"
                            Fill="Black"
                            RenderTransformOrigin="0.5,0.9">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
-                            <RotateTransform Angle="305"/>
-                            <TranslateTransform Y="-23.8"/>
+                            <RotateTransform Angle="{Binding Path=MinuteHandAngle}"/>
+                            <TranslateTransform Y="{Binding Path=MinuteHandYOffset}"/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                
+                <!-- 時針 -->
+                <Rectangle Width="{Binding Path=HourHandSize.Width}"
+                           Height="{Binding Path=HourHandSize.Height}"
+                           Fill="Black"
+                           RenderTransformOrigin="0.5,0.9">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="{Binding Path=HourHandAngle}"/>
+                            <TranslateTransform Y="{Binding HourHandYOffset}"/>
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>

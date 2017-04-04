@@ -21,7 +21,7 @@ namespace AnalogClock.Resource
         /// <summary>
         /// 影の基本長さ
         /// </summary>
-        public static readonly double ORIGINAL_SHADOW_SIZE = 10;
+        public static readonly double ORIGINAL_SHADOW_SIZE = 8;
 
         /// <summary>
         /// 秒針の基本長さ
