@@ -1,4 +1,5 @@
 ﻿using AnalogClock.Resource;
+using AnalogClock.Model;
 using Prism.Mvvm;
 using Prism.Commands;
 using System;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace AnalogClock.ViewModel
 {
@@ -87,8 +89,8 @@ namespace AnalogClock.ViewModel
         private double _secondHandAngle = 0.0;
         public double SecondHandAngle
         {
-            get { return _secondHandAngle; }
-            set { SetProperty(ref _secondHandAngle, value); }
+            get { return TimeUtility.GetSecondAngle(); }
+            //set { SetProperty(ref _secondHandAngle, value); }
         }
 
         /// <summary>
@@ -98,8 +100,8 @@ namespace AnalogClock.ViewModel
         private double _minuteHandAngle = 58.0;
         public double MinuteHandAngle
         {
-            get { return _minuteHandAngle; }
-            set { SetProperty(ref _minuteHandAngle, value); }
+            get { return TimeUtility.GetMinuteAngle(); }
+            //set { SetProperty(ref _minuteHandAngle, value); }
         }
 
         /// <summary>
@@ -109,8 +111,8 @@ namespace AnalogClock.ViewModel
         private double _hourHandAngle = 305.0;
         public double HourHandAngle
         {
-            get { return _hourHandAngle; }
-            set { SetProperty(ref _hourHandAngle, value); }
+            get { return TimeUtility.GetHourAngle(); }
+            //set { SetProperty(ref _hourHandAngle, value); }
         }
 
         /// <summary>
@@ -174,6 +176,9 @@ namespace AnalogClock.ViewModel
 
         // Binding用のプロパティ・コマンドは以上。
 
+        DispatcherTimer timeUpdatingTimer;
+
+
 
         /// <summary>
         /// コンストラクタ
@@ -181,9 +186,23 @@ namespace AnalogClock.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            NumberPositionOffsetArray = new Point[12];
+            this.NumberPositionOffsetArray = new Point[12];
+            this.timeUpdatingTimer = new DispatcherTimer();
+            this.timeUpdatingTimer.Interval = TimeSpan.FromMilliseconds(200);
+            this.timeUpdatingTimer.Tick += (object sender, EventArgs e) =>
+            {
+                OnPropertyChanged("HourHandAngle");
+                OnPropertyChanged("MinuteHandAngle");
+                OnPropertyChanged("SecondHandAngle");
+            };
+            this.timeUpdatingTimer.Start();
             
             LocateControls();
+        }
+
+        ~MainViewModel()
+        {
+            this.timeUpdatingTimer.Stop();
         }
         
         /// <summary>

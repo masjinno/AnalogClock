@@ -33,8 +33,8 @@ namespace AnalogClock.View
         /// </summary>
         private void Initialize()
         {
-            this.Width = ConstantData.ORIGINAL_CLOCK_LENGTH + ConstantData.ORIGINAL_SHADOW_SIZE;
-            this.Height = ConstantData.ORIGINAL_CLOCK_LENGTH + ConstantData.ORIGINAL_SHADOW_SIZE;
+            this.Width = ConstantData.ORIGINAL_CLOCK_LENGTH + ConstantData.ORIGINAL_SHADOW_SIZE * 2;
+            this.Height = ConstantData.ORIGINAL_CLOCK_LENGTH + ConstantData.ORIGINAL_SHADOW_SIZE * 2;
 
             this.MouseLeftButtonDown += (object sender, MouseButtonEventArgs e) => this.DragMove();
         }

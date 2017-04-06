@@ -46,7 +46,7 @@ namespace AnalogClock.Resource
         /// <summary>
         /// 時針の基本長さ
         /// </summary>
-        public static readonly double ORIGINAL_HOUR_HAND_LENGTH = ORIGINAL_CLOCK_LENGTH / 2 * 0.6;
+        public static readonly double ORIGINAL_HOUR_HAND_LENGTH = ORIGINAL_CLOCK_LENGTH / 2 * 0.5;
 
         /// <summary>
         /// 時針の基本幅

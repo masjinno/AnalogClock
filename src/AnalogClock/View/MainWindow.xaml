@@ -9,11 +9,13 @@
         xmlns:Core="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
         xmlns:vm="clr-namespace:AnalogClock.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Analog Clock"
         WindowStyle="None"
         AllowsTransparency="True"
         Cursor="SizeAll"
-        Background="#00000000">
+        Background="#00000000"
+        Topmost="True">
+    <!-- Width, Height のBindingはできなかったため、.xaml.csで初期化する -->
     
     <!-- DataContext -->
     <Window.DataContext>
@@ -65,7 +67,7 @@
         </ContextMenu>
     </Window.ContextMenu>
     
-    <!-- -->
+    <!-- Windowのイベントトリガー -->
     <!--<Interactivity:Interaction.Triggers>
         <Interactivity:EventTrigger EventName="MouseWheel">
             <Core:CallMethodAction TargetObject="{Binding .}" MethodName="MouseScrollEvent"/>
@@ -90,6 +92,7 @@
             </Border.RenderTransform>
             <Border.Background>
                 <RadialGradientBrush>
+                    <GradientStop Color="#CC000000" Offset="0"/>
                     <GradientStop Color="#CC000000" Offset="0.9"/>
                     <GradientStop Color="#00000000" Offset="1"/>
                 </RadialGradientBrush>
@@ -236,7 +239,7 @@
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <RotateTransform Angle="{Binding Path=HourHandAngle}"/>
-                            <TranslateTransform Y="{Binding HourHandYOffset}"/>
+                            <TranslateTransform Y="{Binding Path=HourHandYOffset}"/>
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>

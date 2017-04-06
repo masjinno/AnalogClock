@@ -15,7 +15,7 @@ namespace AnalogClock.Model
         private const int MAX_MINUTE = MAX_SECOND * 60;
 
         /// 360degreeに対応する時針は何秒か
-        private const int MAX_HOUR = MAX_MINUTE * 24;
+        private const int MAX_HOUR = MAX_MINUTE * 12;
 
         /// <summary>
         /// 現在時刻を取得する
@@ -54,6 +54,7 @@ namespace AnalogClock.Model
         {
             int h, m, s;
             TimeUtility.GetNowTime(out h, out m, out s);
+            h %= 12;
 
             int totalSecond = s + (m + h * 60) * 60;
             double hourAngle = 360.0 * totalSecond / MAX_HOUR;
@@ -64,6 +65,7 @@ namespace AnalogClock.Model
         {
             int h, m, s;
             TimeUtility.GetNowTime(out h, out m, out s);
+            h %= 24;
 
             int totalMinute = s + m * 60;
             double minuteAngle = 360.0 * totalMinute / MAX_MINUTE;
@@ -74,6 +76,7 @@ namespace AnalogClock.Model
         {
             int h, m, s;
             TimeUtility.GetNowTime(out h, out m, out s);
+            h %= 24;
 
             double secondAngle = 360.0 * s / MAX_SECOND;
             return secondAngle;
