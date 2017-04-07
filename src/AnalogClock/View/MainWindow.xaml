@@ -16,15 +16,18 @@
         Background="#00000000"
         Topmost="True">
     <!-- Width, Height のBindingはできなかったため、.xaml.csで初期化する -->
-    
+
     <!-- DataContext -->
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
-    
+
     <!-- リソース定義 -->
     <Window.Resources>
+        <!-- 時計の直径 -->
         <system:Double x:Key="ClockSize">200</system:Double>
+
+        <!-- 数字 -->
         <Style x:Key="NumberTextBlock" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -33,6 +36,8 @@
             <Setter Property="Width" Value="48"/>
             <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
         </Style>
+
+        <!-- 時計全体の形 -->
         <Style x:Key="ClockFrameBorder" TargetType="Border">
             <Setter Property="Width" Value="{StaticResource ClockSize}"/>
             <Setter Property="Height" Value="{StaticResource ClockSize}"/>
@@ -58,15 +63,31 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- 秒目盛りの基本形 -->
+        <Style x:Key="SecondScaleRectangle" TargetType="Rectangle">
+            <Setter Property="Width" Value="1"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Fill" Value="Black"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <TranslateTransform Y="100"/>
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
-    
+
     <!-- コンテキストメニュー -->
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Close" Command="{Binding Path=ClosingCommand}"/>
         </ContextMenu>
     </Window.ContextMenu>
-    
+
     <!-- Windowのイベントトリガー -->
     <!--<Interactivity:Interaction.Triggers>
         <Interactivity:EventTrigger EventName="MouseWheel">
@@ -98,10 +119,19 @@
                 </RadialGradientBrush>
             </Border.Background>
         </Border>
-        
+
         <!-- 文字盤 -->
         <Border Style="{StaticResource ClockFrameBorder}">
             <Grid>
+                <!-- 秒目盛り描画 -->
+                <!--<Rectangle Style="{StaticResource SecondScaleRectangle}">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="5"/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>-->
+
                 <!-- 1～12描画 -->
                 <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number1TextBlock"  Text="1" >
                     <TextBlock.RenderTransform>
@@ -217,7 +247,7 @@
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>
-                
+
                 <!-- 分針 -->
                 <Rectangle Width="{Binding Path=MinuteHandSize.Width}"
                            Height="{Binding Path=MinuteHandSize.Height}"
@@ -230,7 +260,7 @@
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>
-                
+
                 <!-- 時針 -->
                 <Rectangle Width="{Binding Path=HourHandSize.Width}"
                            Height="{Binding Path=HourHandSize.Height}"
