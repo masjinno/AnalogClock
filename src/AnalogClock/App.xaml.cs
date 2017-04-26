@@ -16,12 +16,10 @@ namespace AnalogClock
     public partial class App : Application
     {
         private MainWindow view;
-        //private MainViewModel viewModel;
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             view = new MainWindow();
-            //viewModel = new MainViewModel();
             view.Show();
         }
     }

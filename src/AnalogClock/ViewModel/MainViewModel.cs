@@ -270,13 +270,13 @@ namespace AnalogClock.ViewModel
             this.timeUpdatingTimer.Interval = TimeSpan.FromMilliseconds(200);
             this.timeUpdatingTimer.Tick += (object sender, EventArgs e) =>
             {
-                OnPropertyChanged("HourHandAngle");
-                OnPropertyChanged("MinuteHandAngle");
-                OnPropertyChanged("SecondHandAngle");
+                RaisePropertyChanged("HourHandAngle");
+                RaisePropertyChanged("MinuteHandAngle");
+                RaisePropertyChanged("SecondHandAngle");
             };
             this.timeUpdatingTimer.Start();
             
-            LocateControls();
+            this.LocateControls();
         }
 
         ~MainViewModel()
