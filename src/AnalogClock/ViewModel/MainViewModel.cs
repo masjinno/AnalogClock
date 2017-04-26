@@ -229,7 +229,8 @@ namespace AnalogClock.ViewModel
             {
                 return new DelegateCommand(() =>
                 {
-                    MessageBox.Show("未実装");
+                    View.AlermSettingWindow alermSettingWindow = new View.AlermSettingWindow();
+                    alermSettingWindow.Show();
                 });
             }
         }
