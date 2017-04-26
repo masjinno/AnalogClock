@@ -219,6 +219,36 @@ namespace AnalogClock.ViewModel
             }
         }
 
+        /// <summary>
+        /// 【Binding用コマンド】
+        /// アラーム設定コマンド
+        /// </summary>
+        public ICommand AlermOnCommand
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    MessageBox.Show("未実装");
+                });
+            }
+        }
+
+        /// <summary>
+        /// 【Binding用コマンド】
+        /// アラーム解除コマンド
+        /// </summary>
+        public ICommand AlermOffCommand
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    MessageBox.Show("未実装");
+                });
+            }
+        }
+
         // Binding用のプロパティ・コマンドは以上。
 
         #endregion

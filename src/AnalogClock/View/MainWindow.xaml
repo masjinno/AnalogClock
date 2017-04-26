@@ -81,6 +81,11 @@
     <!-- コンテキストメニュー -->
     <Window.ContextMenu>
         <ContextMenu>
+            <MenuItem Header="Alerm">
+                <MenuItem Header="ON" Command="{Binding Path=AlermOnCommand}"/>
+                <MenuItem Header="OFF" Command="{Binding Path=AlermOffCommand}"/>
+            </MenuItem>
+            <Separator/>
             <MenuItem Header="Close" Command="{Binding Path=ClosingCommand}"/>
         </ContextMenu>
     </Window.ContextMenu>
