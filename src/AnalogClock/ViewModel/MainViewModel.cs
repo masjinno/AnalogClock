@@ -15,9 +15,11 @@ namespace AnalogClock.ViewModel
 {
     class MainViewModel : BindableBase
     {
+        #region Binding用プロパティ
+
         /// <summary>
         /// 【Binding用プロパティ】
-        /// 数時位置オフセット
+        /// 数字位置オフセット
         /// 配列インデックス[0～11]は、数字の1～12に対応する。
         /// </summary>
         private Point[] _numberPositionOffsetArray;
@@ -25,6 +27,61 @@ namespace AnalogClock.ViewModel
         {
             get { return _numberPositionOffsetArray; }
             set { SetProperty(ref _numberPositionOffsetArray, value); }
+        }
+
+        /// <summary>
+        /// 【Binding用プロパティ】
+        /// 秒目盛り位置オフセット
+        /// </summary>
+        private Point _secondScalePositionOffset;
+        public Point SecondScalePositionOffset
+        {
+            get { return _secondScalePositionOffset; }
+            set { SetProperty(ref _secondScalePositionOffset, value); }
+        }
+        /// <summary>
+        /// 【Binding用プロパティ】
+        /// 5の倍数の秒目盛り位置オフセット
+        /// </summary>
+        private Point _secondScalePositionOffset5;
+        public Point SecondScalePositionOffset5
+        {
+            get { return _secondScalePositionOffset5; }
+            set { SetProperty(ref _secondScalePositionOffset5, value); }
+        }
+
+        /// <summary>
+        /// 【Binding用プロパティ】
+        /// 秒目盛り角度
+        /// </summary>
+        private double[] _secondScaleAngleArray;
+        public double[] SecondScaleAngleArray
+        {
+            get { return _secondScaleAngleArray; }
+            set { SetProperty(ref _secondScaleAngleArray, value); }
+        }
+
+        /// <summary>
+        /// 【Binding用プロパティ】
+        /// 秒目盛りサイズ
+        /// </summary>
+        private Size _secondScaleSize = new Size(ConstantData.ORIGINAL_SECOND_SCALE_WIDTH, ConstantData.ORIGINAL_SECOND_SCALE_LENGTH);
+        public Size SecondScaleSize
+        {
+            get { return _secondScaleSize; }
+            set { SetProperty(ref _secondScaleSize, value); }
+        }
+        /// <summary>
+        /// 【Binding用プロパティ】
+        /// 5の倍数の秒目盛りサイズ
+        /// </summary>
+        private Size _secondScaleSize5 = new Size(
+            ConstantData.ORIGINAL_SECOND_SCALE_WIDTH * ConstantData.ORIGINAL_5SECOND_SCALE_SIZE_RATE,
+            ConstantData.ORIGINAL_SECOND_SCALE_LENGTH * ConstantData.ORIGINAL_5SECOND_SCALE_SIZE_RATE);
+        public Size SecondScaleSize5
+        {
+            get { return _secondScaleSize5; }
+            set { SetProperty(ref _secondScaleSize5, value); }
         }
 
         /// <summary>
@@ -86,66 +143,54 @@ namespace AnalogClock.ViewModel
         /// 【Binding用プロパティ】
         /// 秒針の角度
         /// </summary>
-        private double _secondHandAngle = 0.0;
         public double SecondHandAngle
         {
             get { return TimeUtility.GetSecondAngle(); }
-            //set { SetProperty(ref _secondHandAngle, value); }
         }
 
         /// <summary>
         /// 【Binding用プロパティ】
         /// 分針の角度
         /// </summary>
-        private double _minuteHandAngle = 58.0;
         public double MinuteHandAngle
         {
             get { return TimeUtility.GetMinuteAngle(); }
-            //set { SetProperty(ref _minuteHandAngle, value); }
         }
 
         /// <summary>
         /// 【Binding用プロパティ】
         /// 時針の角度
         /// </summary>
-        private double _hourHandAngle = 305.0;
         public double HourHandAngle
         {
             get { return TimeUtility.GetHourAngle(); }
-            //set { SetProperty(ref _hourHandAngle, value); }
         }
 
         /// <summary>
         /// 【Binding用プロパティ】
         /// 秒針の縦位置オフセット
         /// </summary>
-        //private double _secondHandYOffset = -36.5;
         public double SecondHandYOffset
         {
             get { return -this.SecondHandSize.Height * 0.4; }
-            //set { SetProperty(ref _secondHandYOffset, value); }
         }
 
         /// <summary>
         /// 【Binding用プロパティ】
         /// 分針の縦位置オフセット
         /// </summary>
-        //private double _minuteHandYOffset = -31.5;
         public double MinuteHandYOffset
         {
             get { return -this.MinuteHandSize.Height * 0.4; }
-            //set { SetProperty(ref _minuteHandYOffset, value); }
         }
 
         /// <summary>
         /// 【Binding用プロパティ】
         /// 時針の縦位置オフセット
         /// </summary>
-        //private double _hourHandYOffset = -23.8;
         public double HourHandYOffset
         {
             get { return -this.HourHandSize.Height * 0.4; }
-            //set { SetProperty(ref _hourHandYOffset, value); }
         }
 
         /// <summary>
@@ -176,6 +221,8 @@ namespace AnalogClock.ViewModel
 
         // Binding用のプロパティ・コマンドは以上。
 
+        #endregion
+
         DispatcherTimer timeUpdatingTimer;
 
 
@@ -187,6 +234,7 @@ namespace AnalogClock.ViewModel
         public MainViewModel()
         {
             this.NumberPositionOffsetArray = new Point[12];
+            this.SecondScaleAngleArray = new double[60];
             this.timeUpdatingTimer = new DispatcherTimer();
             this.timeUpdatingTimer.Interval = TimeSpan.FromMilliseconds(200);
             this.timeUpdatingTimer.Tick += (object sender, EventArgs e) =>
@@ -217,14 +265,22 @@ namespace AnalogClock.ViewModel
             /// 定数 π÷6
             const double PI_OVER_6 = Math.PI / 6.0;
 
-            /// 半径設定
-            const double POSITION_RATE = 1.12;
-
+            /// 数字半径設定
+            const double NUMBER_POSITION_RATE = 1.05;   //秒目盛り無し → 1.12
             /// 文字盤の数字を示すテキストブロックの位置を調整する。初期位置は文字盤の中心になっている。
             for (int i = 0; i < 12; i++)
             {
-                NumberPositionOffsetArray[i].X =  Math.Sin((i + 1) * PI_OVER_6) * (this.Radius - ConstantData.ORIGINAL_NUMBER_FONT_SIZE) * POSITION_RATE;
-                NumberPositionOffsetArray[i].Y = -Math.Cos((i + 1) * PI_OVER_6) * (this.Radius - ConstantData.ORIGINAL_NUMBER_FONT_SIZE) * POSITION_RATE;
+                this.NumberPositionOffsetArray[i].X =  Math.Sin((i + 1) * PI_OVER_6) * (this.Radius - ConstantData.ORIGINAL_NUMBER_FONT_SIZE) * NUMBER_POSITION_RATE;
+                this.NumberPositionOffsetArray[i].Y = -Math.Cos((i + 1) * PI_OVER_6) * (this.Radius - ConstantData.ORIGINAL_NUMBER_FONT_SIZE) * NUMBER_POSITION_RATE;
+            }
+
+            /// 秒目盛りオフセット位置設定
+            SecondScalePositionOffset = new Point(0, -(this.Radius - ConstantData.ORIGINAL_SECOND_SCALE_LENGTH / 2.0));
+            SecondScalePositionOffset5 = new Point(0, -(this.Radius - ConstantData.ORIGINAL_SECOND_SCALE_LENGTH * ConstantData.ORIGINAL_5SECOND_SCALE_SIZE_RATE / 2.0));
+            /// 秒目盛り角度設定
+            for (int i = 0; i < 60; i++)
+            {
+                SecondScaleAngleArray[i] = i * 6.0;    // ⇔ i*360/60
             }
         }
     }

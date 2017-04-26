@@ -29,7 +29,7 @@ namespace AnalogClock.View
         }
 
         /// <summary>
-        /// 
+        /// ウィンドウの初期化設定
         /// </summary>
         private void Initialize()
         {

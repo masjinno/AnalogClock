@@ -66,17 +66,14 @@
 
         <!-- 秒目盛りの基本形 -->
         <Style x:Key="SecondScaleRectangle" TargetType="Rectangle">
-            <Setter Property="Width" Value="1"/>
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="{Binding Path=SecondScaleSize.Width}"/>
+            <Setter Property="Height" Value="{Binding Path=SecondScaleSize.Height}"/>
             <Setter Property="Fill" Value="Black"/>
-            <Setter Property="RenderTransformOrigin" Value="0.5,0"/>
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <TransformGroup>
-                        <TranslateTransform Y="100"/>
-                    </TransformGroup>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        </Style>
+        <Style x:Key="SecondScaleRectangle5" TargetType="Rectangle" BasedOn="{StaticResource SecondScaleRectangle}">
+            <Setter Property="Width" Value="{Binding Path=SecondScaleSize5.Width}"/>
+            <Setter Property="Height" Value="{Binding Path=SecondScaleSize5.Height}"/>
         </Style>
 
     </Window.Resources>
@@ -124,13 +121,66 @@
         <Border Style="{StaticResource ClockFrameBorder}">
             <Grid>
                 <!-- 秒目盛り描画 -->
-                <!--<Rectangle Style="{StaticResource SecondScaleRectangle}">
-                    <Rectangle.RenderTransform>
-                        <TransformGroup>
-                            <RotateTransform Angle="5"/>
-                        </TransformGroup>
-                    </Rectangle.RenderTransform>
-                </Rectangle>-->
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[ 0]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[ 1]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[ 2]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[ 3]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[ 4]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[ 5]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[ 6]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[ 7]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[ 8]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[ 9]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[10]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[11]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[12]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[13]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[14]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[15]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[16]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[17]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[18]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[19]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[20]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[21]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[22]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[23]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[24]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[25]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[26]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[27]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[28]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[29]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[30]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[31]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[32]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[33]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[34]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[35]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[36]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[37]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[38]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[39]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[40]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[41]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[42]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[43]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[44]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[45]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[46]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[47]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[48]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[49]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[50]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[51]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[52]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[53]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[54]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle5}"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset5.Y}"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[55]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[56]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[57]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[58]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
+                <Rectangle Style="{StaticResource SecondScaleRectangle }"><Rectangle.RenderTransform><TransformGroup><TranslateTransform Y="{Binding Path=SecondScalePositionOffset.Y }"/><RotateTransform Angle="{Binding Path=SecondScaleAngleArray[59]}"/></TransformGroup></Rectangle.RenderTransform></Rectangle>
 
                 <!-- 1～12描画 -->
                 <TextBlock Style="{StaticResource NumberTextBlock}" x:Name="Number1TextBlock"  Text="1" >
@@ -240,8 +290,6 @@
                            RenderTransformOrigin="0.5,0.9">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
                             <RotateTransform Angle="{Binding Path=SecondHandAngle}"/>
                             <TranslateTransform Y="{Binding Path=SecondHandYOffset}"/>
                         </TransformGroup>
