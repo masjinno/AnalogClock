@@ -1,4 +1,4 @@
-﻿<Window x:Class="AnalogClock.View.MainWindow"
+﻿<Window xmlns:View="clr-namespace:AnalogClock.View"  x:Class="AnalogClock.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -82,7 +82,9 @@
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Alerm">
-                <MenuItem Header="ON" Command="{Binding Path=AlermOnCommand}"/>
+                <MenuItem Header="ON" Command="{Binding Path=AlermOnCommand}">
+                    <View:AlermSettingPopup />
+                </MenuItem>
                 <MenuItem Header="OFF" Command="{Binding Path=AlermOffCommand}"/>
             </MenuItem>
             <Separator/>

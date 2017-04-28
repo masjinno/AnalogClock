@@ -193,6 +193,10 @@ namespace AnalogClock.ViewModel
             get { return -this.HourHandSize.Height * 0.4; }
         }
 
+        #endregion
+
+        #region Binding用コマンド
+
         /// <summary>
         /// 【Binding用コマンド】
         /// 基本サイズに対するコントロールの大きさ比

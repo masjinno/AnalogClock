@@ -31,9 +31,9 @@ namespace AnalogClock.View
                 typeof(NumericUpDown),
                 new PropertyMetadata(
                     0,
-                    (DependencyObject sender, DependencyPropertyChangedEventArgs e) =>
+                    (DependencyObject d, DependencyPropertyChangedEventArgs e) =>
                     {
-                        ((NumericUpDown)sender).NumericValue = (int)e.NewValue;
+                        ((NumericUpDown)d).NumericValue = (int)e.NewValue;
                     }));
         private int _numericValue;
         public int NumericValue

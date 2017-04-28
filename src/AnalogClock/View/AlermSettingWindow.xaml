@@ -5,59 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnalogClock.View"
         mc:Ignorable="d"
-        Title="AlermSetting" Width="240" Height="160">
-    <DockPanel>
-        <!-- ボタンパネル -->
-        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
-            <Button DockPanel.Dock="Right"
-                    x:Name="CancelButton"
-                    Content="Cancel"
-                    Width="75"
-                    Margin="10"/>
-            <Button DockPanel.Dock="Right"
-                    x:Name="OKButton"
-                    Content="OK"
-                    Width="75"
-                    Margin="10"/>
-        </DockPanel>
-        
-        <!-- 時刻設定パネル -->
-        <Grid Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            
-            <!-- 時 -->
-            <Grid Grid.Column="0" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
-                           Text="Hour:" VerticalAlignment="Center"/>
-                <local:NumericUpDown Grid.Row="1"
-                                     Margin="5"
-                                     NumericValue="0"
-                                     MaxValue="23"
-                                     MinValue="0"/>
-            </Grid>
-            
-            <!-- 分 -->
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
-                           Text="Minute:" VerticalAlignment="Center"/>
-                <local:NumericUpDown Grid.Row="1"
-                                     Margin="5"
-                                     NumericValue="0"
-                                     MaxValue="59"
-                                     MinValue="0"/>
-            </Grid>
-            
-        </Grid>
-    </DockPanel>
+        Title="AlermSetting"
+        Width="260"
+        Height="145"
+        Topmost="True"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <local:AlermSetting/>
 </Window>

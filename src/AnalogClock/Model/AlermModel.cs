@@ -12,14 +12,51 @@ namespace AnalogClock.Model
         /// アラームが有効か否か
         /// true:有効  false:無効
         /// </summary>
-        public bool IsAlermOn;
+        private bool _isAlermOn = false;
+        public bool IsAlermOn
+        {
+            get { return _isAlermOn; }
+            set
+            {
+                _isAlermOn = value;
+                if (!_isAlermOn)
+                {
+                    /// 解除時は0にリセットする
+                    Hour = 0;
+                    Minute = 0;
+                }
+            }
+        }
 
         /// <summary>
-        /// アラームに設定されている時刻
+        /// アラームに設定されている時刻[時]
         /// </summary>
-        public int Hour;
-        public int Minute;
-        public int Second;
+        private int _hour = 0;
+        public int Hour
+        {
+            get { return _hour; }
+            set
+            {
+                if (value < 0)        _hour = 0;
+                else if (value >= 24) _hour = 23;
+                else                  _hour = value;
+            }
+        }
+
+        /// <summary>
+        /// アラームに設定されている時刻[分]
+        /// </summary>
+        private int _minute = 0;
+        public int Minute
+        {
+            get { return _minute; }
+            set
+            {
+                if (value < 0)        _minute = 0;
+                else if (value >= 60) _minute = 59;
+                else                  _minute = value;
+            }
+        }
 
         /// <summary>
         /// コンストラクタ。
@@ -27,10 +64,11 @@ namespace AnalogClock.Model
         /// </summary>
         public AlermModel()
         {
-            IsAlermOn = false;
-            Hour = 0;
-            Minute = 0;
-            Second = 0;
+            _isAlermOn = false;
+            _hour = 0;
+            _minute = 0;
         }
+
+
     }
 }

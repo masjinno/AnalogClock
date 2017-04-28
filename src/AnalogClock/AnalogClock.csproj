@@ -70,9 +70,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\AlermModel.cs" />
+    <Compile Include="View\AlermSetting.xaml.cs">
+      <DependentUpon>AlermSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AlermSettingPopup.xaml.cs">
+      <DependentUpon>AlermSettingPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NumericUpDown.xaml.cs">
       <DependentUpon>NumericUpDown.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AlermSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AlermSettingPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AlermSettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
