@@ -233,8 +233,12 @@ namespace AnalogClock.ViewModel
             {
                 return new DelegateCommand(() =>
                 {
-                    View.AlermSettingWindow alermSettingWindow = new View.AlermSettingWindow();
-                    alermSettingWindow.Show();
+                    #region ポップアップの場合
+                    //this.alermSettingPopup.IsOpen = true;
+                    #endregion
+
+                    this.alermSettingWindow = new View.AlermSettingWindow(alerm);
+                    alermSettingWindow.ShowDialog();
                 });
             }
         }
@@ -249,7 +253,7 @@ namespace AnalogClock.ViewModel
             {
                 return new DelegateCommand(() =>
                 {
-                    MessageBox.Show("未実装");
+                    this.alerm.IsAlermOn = false;
                 });
             }
         }
@@ -258,7 +262,12 @@ namespace AnalogClock.ViewModel
 
         #endregion
 
-        DispatcherTimer timeUpdatingTimer;
+        private DispatcherTimer timeUpdatingTimer;
+
+        private Model.AlermModel alerm;
+        //private View.AlermSettingPopup alermSettingPopup;
+        private View.AlermSettingWindow alermSettingWindow;
+
 
 
 
@@ -270,6 +279,7 @@ namespace AnalogClock.ViewModel
         {
             this.NumberPositionOffsetArray = new Point[12];
             this.SecondScaleAngleArray = new double[60];
+
             this.timeUpdatingTimer = new DispatcherTimer();
             this.timeUpdatingTimer.Interval = TimeSpan.FromMilliseconds(200);
             this.timeUpdatingTimer.Tick += (object sender, EventArgs e) =>
@@ -279,7 +289,10 @@ namespace AnalogClock.ViewModel
                 RaisePropertyChanged("SecondHandAngle");
             };
             this.timeUpdatingTimer.Start();
-            
+
+            this.alerm = new AlermModel();
+            //this.alermSettingPopup = new View.AlermSettingPopup(alerm);
+
             this.LocateControls();
         }
 
