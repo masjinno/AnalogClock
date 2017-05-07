@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:AnalogClock.View"
         mc:Ignorable="d"
         Title="AlermSetting"
-        Width="260"
-        Height="145"
-        Topmost="True"
+        Width="265"
+        Height="150"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize">
-    <local:AlermSetting/>
+    <local:AlermSetting x:Name="MainAlermSetting"/>
 </Window>

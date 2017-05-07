@@ -19,14 +19,38 @@ namespace AnalogClock.View
     /// </summary>
     public partial class AlermSettingWindow : Window
     {
-        public AlermSettingWindow()
+        private Model.AlermModel alerm;
+
+        public AlermSettingWindow(Model.AlermModel al)
         {
+            this.alerm = al;
+
             InitializeComponent();
+            this.InitializeControls();
         }
 
         private void InitializeControls()
         {
+            /// OKボタンクリックイベント時の処理を定義
+            this.MainAlermSetting.OKButtonClick += (object sender, RoutedEventArgs e) =>
+            {
+                this.alerm.Hour = this.MainAlermSetting.HourNumericUpDown.NumericValue;
+                this.alerm.Minute = this.MainAlermSetting.MinuteNumericUpDown.NumericValue;
+                this.alerm.IsAlermOn = true;
+                this.Close();
+            };
 
+            /// Cancelボタンクリックイベント時の処理を定義
+            this.MainAlermSetting.CancelButtonClick += (object sender, RoutedEventArgs e) =>
+            {
+                this.Close();
+            };
+
+            if (this.alerm.IsAlermOn)
+            {
+                this.MainAlermSetting.HourNumericUpDown.NumericValue = this.alerm.Hour;
+                this.MainAlermSetting.MinuteNumericUpDown.NumericValue = this.alerm.Minute;
+            }
         }
     }
 }
