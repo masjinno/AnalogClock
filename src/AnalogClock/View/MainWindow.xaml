@@ -82,9 +82,7 @@
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Alerm">
-                <MenuItem Header="ON" Command="{Binding Path=AlermOnCommand}">
-                    <View:AlermSettingPopup />
-                </MenuItem>
+                <MenuItem Header="ON" Command="{Binding Path=AlermOnCommand}"/>
                 <MenuItem Header="OFF" Command="{Binding Path=AlermOffCommand}"/>
             </MenuItem>
             <Separator/>

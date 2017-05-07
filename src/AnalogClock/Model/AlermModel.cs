@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnalogClock.Model
 {
-    class AlermModel
+    public class AlermModel
     {
         /// <summary>
         /// アラームが有効か否か
@@ -19,11 +19,10 @@ namespace AnalogClock.Model
             set
             {
                 _isAlermOn = value;
-                if (!_isAlermOn)
+                if (_isAlermOn)
                 {
-                    /// 解除時は0にリセットする
-                    Hour = 0;
-                    Minute = 0;
+                    /// 設定時の処理
+                    this.AlermStart();
                 }
             }
         }
