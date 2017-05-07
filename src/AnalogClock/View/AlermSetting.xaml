@@ -43,7 +43,8 @@
                            Text="Hour:"
                            VerticalAlignment="Center"
                            FontSize="{StaticResource DefaultFontSize}"/>
-                <local:NumericUpDown Grid.Row="1"
+                <local:NumericUpDown x:Name="HourNumericUpDown"
+                                     Grid.Row="1"
                                      Margin="5,5,5,0"
                                      FontSize="{StaticResource DefaultFontSize}"
                                      NumericValue="0"
@@ -61,7 +62,8 @@
                            Text="Minute:"
                            VerticalAlignment="Center"
                            FontSize="{StaticResource DefaultFontSize}"/>
-                <local:NumericUpDown Grid.Row="1"
+                <local:NumericUpDown x:Name="MinuteNumericUpDown"
+                                     Grid.Row="1"
                                      Margin="5,5,5,0"
                                      FontSize="{StaticResource DefaultFontSize}"
                                      NumericValue="0"
