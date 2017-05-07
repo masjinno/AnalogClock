@@ -37,7 +37,11 @@ namespace AnalogClock.View
         public bool IsOpen
         {
             get { return this._isOpen; }
-            set { _}
+            set
+            {
+                this._isOpen = value;
+                this.MainPopup.IsOpen = this._isOpen;
+            }
         }
         #endregion
         public AlermSettingPopup()
