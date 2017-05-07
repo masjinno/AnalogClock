@@ -4,11 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AnalogClock.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Popup x:Name="MainPopup" Placement="Bottom" OpacityMask="Black">
-        <Grid Background="White">
-            <local:AlermSetting/>
-        </Grid>
+             mc:Ignorable="d">
+    <Popup x:Name="MainPopup" Width="260" Height="150" Placement="MousePoint" HorizontalOffset="-130" VerticalOffset="-75">
+        <Border BorderBrush="Black" BorderThickness="1">
+            <StackPanel Background="White">
+                <TextBlock Text="Alerm Setting" FontSize="18" TextAlignment="Center"/>
+                <local:AlermSetting x:Name="MainAlermSetting"/>
+            </StackPanel>
+        </Border>
     </Popup>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnalogClock.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,12 @@ namespace AnalogClock.View
     {
         #region UserControlプロパティ
 
+        /// <summary>
+        /// 【UserControl】【Property】
+        /// ポップアップオープン状態。
+        ///   true:オープン
+        ///   false:クローズ
+        /// </summary>
         public static readonly DependencyProperty IsOpenProperty =
             DependencyProperty.Register(
                 "IsOpen",
@@ -43,10 +50,35 @@ namespace AnalogClock.View
                 this.MainPopup.IsOpen = this._isOpen;
             }
         }
+
         #endregion
-        public AlermSettingPopup()
+
+        private Model.AlermModel alerm;
+        
+        public AlermSettingPopup(Model.AlermModel al)
         {
+            this.alerm = al;
+
             InitializeComponent();
+            this.InitializeControls();
+        }
+
+        private void InitializeControls()
+        {
+            /// OKボタンクリックイベント時の処理を定義
+            this.MainAlermSetting.OKButtonClick += (object sender, RoutedEventArgs e) =>
+            {
+                this.alerm.Hour = this.MainAlermSetting.HourNumericUpDown.NumericValue;
+                this.alerm.Minute = this.MainAlermSetting.MinuteNumericUpDown.NumericValue;
+                this.alerm.IsAlermOn = true;
+                this.IsOpen = false;
+            };
+
+            /// Cancelボタンクリックイベント時の処理を定義
+            this.MainAlermSetting.CancelButtonClick += (object sender, RoutedEventArgs e) =>
+            {
+                this.IsOpen = false;
+            };
         }
     }
 }
