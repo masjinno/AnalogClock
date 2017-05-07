@@ -68,6 +68,44 @@ namespace AnalogClock.Model
             _minute = 0;
         }
 
+        private void AlermStart()
+        {
+            Task t = new Task(()=>
+            {
+                bool isOnTime = false;
+                while (IsAlermOn)
+                {
+                    int hour, minute, second;
+                    TimeUtility.GetNowTime(out hour, out minute, out second);
+                    if (isEqualedHourMinute(this.Hour, this.Minute, hour, minute))
+                    {
+                        isOnTime = true;
+                        this.IsAlermOn = false;
+                    }
+                    System.Threading.Thread.Sleep(500); //500ms間隔で監視する
+                }
 
+                if (isOnTime)
+                {
+                    System.Windows.MessageBox.Show(
+                        "It's a set time.",
+                        "Alerm",
+                        System.Windows.MessageBoxButton.OK,
+                        System.Windows.MessageBoxImage.Information,
+                        System.Windows.MessageBoxResult.OK,
+                        System.Windows.MessageBoxOptions.ServiceNotification);
+                }
+            });
+            t.Start();
+        }
+
+        private bool isEqualedHourMinute(int hour1, int minute1, int hour2, int minute2)
+        {
+            bool ret = false;
+
+            if (hour1 == hour2 && minute1 == minute2) ret = true;
+
+            return ret;
+        }
     }
 }
