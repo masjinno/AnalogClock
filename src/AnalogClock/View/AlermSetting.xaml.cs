@@ -52,14 +52,7 @@ namespace AnalogClock.View
             remove { this.RemoveHandler(CancelButtonClickEvent, value); }
         }
         #endregion
-
-        /// <summary>
-        /// アラーム本体。
-        /// クラス外でnewされたオブジェクトを割り当てる。
-        /// </summary>
-        Model.AlermModel alerm;
-
-
+        
         /// <summary>
         /// コンストラクタ。
         /// WPF規定の処理の他に、イベント登録処理を行う。
