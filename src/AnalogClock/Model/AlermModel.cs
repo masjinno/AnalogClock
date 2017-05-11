@@ -101,11 +101,7 @@ namespace AnalogClock.Model
 
         private bool isEqualedHourMinute(int hour1, int minute1, int hour2, int minute2)
         {
-            bool ret = false;
-
-            if (hour1 == hour2 && minute1 == minute2) ret = true;
-
-            return ret;
+            return (hour1 == hour2 && minute1 == minute2);
         }
     }
 }
