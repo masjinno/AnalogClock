@@ -82,5 +82,17 @@ namespace AnalogClock.View
                 RaiseEvent(newEventArgs);
             };
         }
+
+        /// <summary>
+        /// アラーム設定関数。
+        /// UI設定を、設定対象アラームにセットする。
+        /// </summary>
+        /// <param name="targetAlerm">設定対象アラーム</param>
+        public void SetAlerm(Model.AlermModel targetAlerm)
+        {
+            targetAlerm.Hour = this.HourNumericUpDown.NumericValue;
+            targetAlerm.Minute = this.MinuteNumericUpDown.NumericValue;
+            targetAlerm.IsAlermOn = true;
+        }
     }
 }

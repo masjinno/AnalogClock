@@ -34,9 +34,7 @@ namespace AnalogClock.View
             /// OKボタンクリックイベント時の処理を定義
             this.MainAlermSetting.OKButtonClick += (object sender, RoutedEventArgs e) =>
             {
-                this.alerm.Hour = this.MainAlermSetting.HourNumericUpDown.NumericValue;
-                this.alerm.Minute = this.MainAlermSetting.MinuteNumericUpDown.NumericValue;
-                this.alerm.IsAlermOn = true;
+                this.MainAlermSetting.SetAlerm(this.alerm);
                 this.Close();
             };
 
