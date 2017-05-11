@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AnalogClock.Model
 {
+    /// <summary>
+    /// 1つの時刻を受け持つアラーム
+    /// </summary>
     public class AlermModel
     {
         /// <summary>
@@ -22,7 +25,7 @@ namespace AnalogClock.Model
                 if (_isAlermOn)
                 {
                     /// 設定時の処理
-                    this.AlermStart();
+                    this.SetAlerm();
                 }
             }
         }
@@ -68,8 +71,12 @@ namespace AnalogClock.Model
             _minute = 0;
         }
 
-        private void AlermStart()
+        /// <summary>
+        /// アラームを有効にする
+        /// </summary>
+        private void SetAlerm()
         {
+            /// 設定した時刻に到達したかを監視するタスク
             Task t = new Task(()=>
             {
                 bool isOnTime = false;
@@ -96,9 +103,18 @@ namespace AnalogClock.Model
                         System.Windows.MessageBoxOptions.ServiceNotification);
                 }
             });
+            /// タスク開始
             t.Start();
         }
 
+        /// <summary>
+        /// 時刻が一致しているかを判定する
+        /// </summary>
+        /// <param name="hour1">判定対象時刻1 [時]</param>
+        /// <param name="minute1">判定対象時刻1 [分]</param>
+        /// <param name="hour2">判定対象時刻2 [時]</param>
+        /// <param name="minute2">判定対象時刻2 [分]</param>
+        /// <returns>時刻が一致しているか  true:一致している  false:一致していない</returns>
         private bool isEqualedHourMinute(int hour1, int minute1, int hour2, int minute2)
         {
             return (hour1 == hour2 && minute1 == minute2);

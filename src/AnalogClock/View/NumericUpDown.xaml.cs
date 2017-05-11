@@ -111,6 +111,10 @@ namespace AnalogClock.View
         }
         #endregion
 
+        /// <summary>
+        /// コンストラクタ。
+        /// ・コントロール初期化
+        /// </summary>
         public NumericUpDown()
         {
             InitializeComponent();

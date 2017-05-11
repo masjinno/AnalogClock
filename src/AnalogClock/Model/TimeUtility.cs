@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AnalogClock.Model
 {
+    /// <summary>
+    /// 時刻に関するユーティリティ
+    /// </summary>
     public static class TimeUtility
     {
         /// 360degreeに対応する秒針は何秒か
@@ -50,7 +53,12 @@ namespace AnalogClock.Model
             secondAngle = 360.0 * second / MAX_SECOND;
         }
 
-        public static double GetHourAngle()
+        /// <summary>
+        /// 現在時刻の時針角度[deg]を取得する。
+        /// 時刻12:00:00のとき0[deg]であり、時刻3:00:00のとき90[deg]である。
+        /// </summary>
+        /// <returns>現在時刻の時針角度[deg]</returns>
+        public static double GetHourAngleDegree()
         {
             int h, m, s;
             TimeUtility.GetNowTime(out h, out m, out s);
@@ -60,7 +68,12 @@ namespace AnalogClock.Model
             double hourAngle = 360.0 * totalSecond / MAX_HOUR;
             return hourAngle;
         }
-
+        
+        /// <summary>
+        /// 現在時刻の分針角度[deg]を取得する。
+        /// 時刻12:00:00のとき0[deg]であり、時刻12:15:00のとき90[deg]である。
+        /// </summary>
+        /// <returns>現在時刻の分針角度[deg]</returns>
         public static double GetMinuteAngle()
         {
             int h, m, s;
@@ -72,6 +85,11 @@ namespace AnalogClock.Model
             return minuteAngle;
         }
 
+        /// <summary>
+        /// 現在時刻の秒針角度[deg]を取得する。
+        /// 時刻12:00:00のとき0[deg]であり、時刻12:00:15のとき90[deg]である。
+        /// </summary>
+        /// <returns>現在時刻の時針角度[deg]</returns>
         public static double GetSecondAngle()
         {
             int h, m, s;

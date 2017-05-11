@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AnalogClock.Resource
 {
+    /// <summary>
+    /// 定数データ
+    /// </summary>
     class ConstantData
     {
         /// <summary>

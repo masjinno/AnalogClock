@@ -54,6 +54,13 @@ namespace AnalogClock.View
         #endregion
 
         /// <summary>
+        /// アラーム本体。
+        /// クラス外でnewされたオブジェクトを割り当てる。
+        /// </summary>
+        Model.AlermModel alerm;
+
+
+        /// <summary>
         /// コンストラクタ。
         /// WPF規定の処理の他に、イベント登録処理を行う。
         /// </summary>
@@ -66,11 +73,15 @@ namespace AnalogClock.View
             RegisterEvents();
         }
 
+        /// <summary>
+        /// イベント登録処理
+        /// </summary>
         private void RegisterEvents()
         {
             /// OKボタンクリックイベント登録処理
             OKButton.Click += (object sender, RoutedEventArgs e) =>
             {
+                /// ユーザーコントロールで定義しているOKButtonClickEventを立ち上げる
                 RoutedEventArgs newEventArgs = new RoutedEventArgs(AlermSetting.OKButtonClickEvent);
                 RaiseEvent(newEventArgs);
             };
@@ -78,6 +89,7 @@ namespace AnalogClock.View
             /// Cancelボタンクリックイベント登録処理
             CancelButton.Click += (object sender, RoutedEventArgs e) =>
             {
+                /// ユーザーコントロールで定義しているCancelButtonClickEventを立ち上げる
                 RoutedEventArgs newEventArgs = new RoutedEventArgs(AlermSetting.CancelButtonClickEvent);
                 RaiseEvent(newEventArgs);
             };

@@ -53,6 +53,10 @@ namespace AnalogClock.View
 
         #endregion
 
+        /// <summary>
+        /// アラーム本体。
+        /// クラス外でnewされたオブジェクトを割り当てる。
+        /// </summary>
         private Model.AlermModel alerm;
         
         public AlermSettingPopup(Model.AlermModel al)
@@ -63,6 +67,11 @@ namespace AnalogClock.View
             this.InitializeControls();
         }
 
+        /// <summary>
+        /// コントロール初期化
+        /// ・OKボタン押下イベント処理を定義
+        /// ・Cancelボタン押下イベント処理を定義
+        /// </summary>
         private void InitializeControls()
         {
             /// OKボタンクリックイベント時の処理を定義

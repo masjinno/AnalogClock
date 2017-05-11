@@ -21,6 +21,10 @@ namespace AnalogClock.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// コンストラクタ。
+        /// ・コントロール初期化
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +34,9 @@ namespace AnalogClock.View
 
         /// <summary>
         /// ウィンドウの初期化設定
+        /// ・Window幅設定
+        /// ・Window高さ設定
+        /// ・自在にドラッグ＆ドロップできるように設定
         /// </summary>
         private void Initialize()
         {

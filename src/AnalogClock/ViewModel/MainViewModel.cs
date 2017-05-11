@@ -1,5 +1,6 @@
 ﻿using AnalogClock.Resource;
 using AnalogClock.Model;
+using AnalogClock.View;
 using Prism.Mvvm;
 using Prism.Commands;
 using System;
@@ -13,6 +14,11 @@ using System.Windows.Threading;
 
 namespace AnalogClock.ViewModel
 {
+    /// <summary>
+    /// メインのViewModel
+    /// 使用するView:
+    ///   ・MainWindow(時計画面)
+    /// </summary>
     class MainViewModel : BindableBase
     {
         #region Binding用プロパティ
@@ -163,7 +169,7 @@ namespace AnalogClock.ViewModel
         /// </summary>
         public double HourHandAngle
         {
-            get { return TimeUtility.GetHourAngle(); }
+            get { return TimeUtility.GetHourAngleDegree(); }
         }
 
         /// <summary>
@@ -262,14 +268,21 @@ namespace AnalogClock.ViewModel
 
         #endregion
 
+        /// <summary>
+        /// 時刻更新監視タイマー
+        /// </summary>
         private DispatcherTimer timeUpdatingTimer;
 
+        /// <summary>
+        /// アラーム本体
+        /// </summary>
         private Model.AlermModel alerm;
+
+        /// <summary>
+        /// アラーム設定ダイアログ
+        /// </summary>
         //private View.AlermSettingPopup alermSettingPopup;
         private View.AlermSettingWindow alermSettingWindow;
-
-
-
 
         /// <summary>
         /// コンストラクタ
@@ -290,12 +303,16 @@ namespace AnalogClock.ViewModel
             };
             this.timeUpdatingTimer.Start();
 
-            this.alerm = new AlermModel();
+            this.alerm = new Model.AlermModel();
             //this.alermSettingPopup = new View.AlermSettingPopup(alerm);
 
             this.LocateControls();
         }
 
+        /// <summary>
+        /// デストラクタ。
+        /// ・時刻監視タイマーの停止
+        /// </summary>
         ~MainViewModel()
         {
             this.timeUpdatingTimer.Stop();

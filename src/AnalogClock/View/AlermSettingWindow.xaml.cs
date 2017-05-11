@@ -19,8 +19,18 @@ namespace AnalogClock.View
     /// </summary>
     public partial class AlermSettingWindow : Window
     {
+        /// <summary>
+        /// アラーム本体。
+        /// クラス外でnewされたオブジェクトを割り当てる。
+        /// </summary>
         private Model.AlermModel alerm;
 
+        /// <summary>
+        /// コンストラクタ。
+        /// ・UI設定対象を代入する
+        /// ・各種コントロール初期化
+        /// </summary>
+        /// <param name="al">UI設定対象のアラーム</param>
         public AlermSettingWindow(Model.AlermModel al)
         {
             this.alerm = al;
@@ -29,6 +39,11 @@ namespace AnalogClock.View
             this.InitializeControls();
         }
 
+        /// <summary>
+        /// コントロール初期化
+        /// ・OKボタン押下イベント処理を定義
+        /// ・Cancelボタン押下イベント処理を定義
+        /// </summary>
         private void InitializeControls()
         {
             /// OKボタンクリックイベント時の処理を定義
